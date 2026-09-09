@@ -1,22 +1,45 @@
-html, body {
-    background-color: lightblue;
+html,
+body {
+    background-color: hsl(192, 17%, 94%);
     font-family: Arial, sans-serif;
     margin: 0;
+    text-align: center;
     padding: 20px;
+    font-size: 22px;
+}
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
 body {
-    nav {
+    main {
+        max-width: 1600px;
+        height: auto;
+        margin:  0 auto;
+        padding: 40px;
+        background-color: white;
+        border-radius: 80px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    
+    nav { 
         ul {
             list-style-type: none;
-            padding: 0;
+            padding: 60px 60px;
+            display: flex;
+            gap: 120px;
+            justify-content: center;
+            background-color: white;
+            border-radius: 80px;
+
         }
 
         li {
             display: inline;
-            margin-right: 15px;
-        }
 
+        }
         a {
             text-decoration: none;
             color: #333;
@@ -27,4 +50,68 @@ body {
             }
         }
     }
-}                
+}
+
+/* ==========================
+   Tablet (768px and below)
+========================== */
+
+@media (max-width: 1220px) {
+
+    html,
+    body {
+        padding: 15px;
+    }
+
+    body {
+        nav {
+            ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            li {
+                display: inline-block;
+            }
+
+            a {
+                font-size: 0.95rem;
+            }
+        }
+    }
+}
+
+/* ==========================
+   Mobile (480px and below)
+========================== */
+
+@media (max-width: 768px) {
+
+    html,
+    body {
+        padding: 10px;
+    }
+
+    body {
+        nav {
+            ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            li {
+                display: block;
+                margin: 0;
+            }
+
+            a {
+                display: block;
+                padding: 8px 0;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
