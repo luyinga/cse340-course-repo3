@@ -41,11 +41,14 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/organizations', async (req, res) => {
+  try {
     const organizations = await getAllOrganizations();
-    console.log('Organizations:', organizations); // Log the organizations to the console for debugging
-
     const title = 'Organizations';
     res.render('organizations', { title, organizations });
+  } catch (error) {
+    console.error('Error loading organizations:', error.message);
+    res.status(500).send('Unable to load organizations.');
+  }
 });
 app.get('/projects', async (req, res) => {
     const title = 'Service Projects';

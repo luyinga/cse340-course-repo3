@@ -18,7 +18,7 @@ const useSsl = process.env.DB_SSL === 'true' ||
 
 const pool = new Pool({
     connectionString: process.env.DB_URL,
-    ssl: useSsl
+    ssl: useSsl ? { rejectUnauthorized: false } : false
 });
 
 /**
