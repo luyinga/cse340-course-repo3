@@ -61,6 +61,33 @@ INSERT INTO service_projects (organization_id, title, description, location, pro
 (3, 'PC Repair', 'Fixing old laptops', 'Tech Hub', '2026-05-17'),
 (3, 'Hardware Demo', 'Showing new tools', 'High School', '2026-05-22');
 
-<li>Park Cleanup - Join us to clean up local parks and make them beautiful!</li>
-           <li>Food Drive - Help collect and distribute food to those in need.</li>
-           <li>Community Tutoring - Volunteer to tutor students in various subjects.</li>
+CREATE TABLE categories (
+	category_id SERIAL PRIMARY KEY,
+	category_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- ========================================
+-- project_categories Table (Many-to-Many Relationship)
+-- ========================================
+
+CREATE TABLE project_categories (
+	project_id INT NOT NULL,
+	category_id INT NOT NULL,
+	--Constraints
+	PRIMARY KEY (project_id, category_id),
+	FOREIGN KEY (project_id) REFERENCES
+	service_projects (project_id) ON DELETE CASCADE,
+	FOREIGN KEY (category_id) REFERENCES
+	categories(category_id) ON DELETE CASCADE
+);
+
+-- ========================================
+-- Insert sample data: Categories
+-- ========================================
+
+INSERT INTO categories (category_name) VALUES
+('Environment'),
+('Education'),
+('Health'),
+('Community Development'),
+('Food Security');
