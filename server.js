@@ -5,6 +5,14 @@ import path from 'path';
 
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
+import {
+  getAllProjects,
+  getProjectsByOrganizationId,
+  getUpcomingProjects,
+  getProjectDetails,
+  createProject,
+  updateProject
+} from './src/models/projects.js';
 
 
 // Define the application environment
@@ -51,8 +59,14 @@ app.get('/organizations', async (req, res) => {
   }
 });
 app.get('/projects', async (req, res) => {
+  try {
+    const projects = await getAllProjects();
     const title = 'Service Projects';
-    res.render('projects', { title });
+    res.render('projects', { title, projects });
+  } catch (error) {
+    console.error('Error loading projects:', error.message);
+    res.status(500).send('Unable to load projects.');
+  }
 });
 
 app.get('/categories', async (req, res) => {
