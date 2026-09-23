@@ -44,7 +44,7 @@ const getProjectsByOrganizationId = async (organizationId) => {
 
 
 const getUpcomingProjects = async (number_of_projects) => {
-  const query = `
+  const upcomingQuery = `
     SELECT
       service_projects.project_id,
       service_projects.title,
@@ -60,9 +60,29 @@ const getUpcomingProjects = async (number_of_projects) => {
     LIMIT $1;
   `;
 
-  const query_params = [number_of_projects];
-  const result = await db.query(query, query_params);
-  return result.rows;
+  const fallbackQuery = `
+    SELECT
+      service_projects.project_id,
+      service_projects.title,
+      service_projects.description,
+      service_projects.project_date AS date,
+      service_projects.location,
+      service_projects.organization_id,
+      organization.name AS organization_name 
+    FROM service_projects
+    JOIN organization ON service_projects.organization_id = organization.organization_id
+    ORDER BY service_projects.project_date DESC
+    LIMIT $1;
+  `;
+
+  const result = await db.query(upcomingQuery, [number_of_projects]);
+
+  if (result.rows.length > 0) {
+    return result.rows;
+  }
+
+  const fallbackResult = await db.query(fallbackQuery, [number_of_projects]);
+  return fallbackResult.rows;
 };
 
 const getProjectDetails = async (Id) => {

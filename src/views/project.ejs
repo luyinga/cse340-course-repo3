@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+    <main>
+        <h1><%= title %></h1>
+        <h2>Service Project Details</h2>
+        <ul>
+            <% if (projectDetails) { %>
+                <li>
+                    <strong><%= projectDetails.title %></strong> -
+                    <%= projectDetails.description %>
+                    (Location: <%= projectDetails.location %>, Date: <%= projectDetails.date %>) -
+                    <strong>Partner Organization:</strong>
+                    <a href="/organization/<%= projectDetails.organization_id %>">
+                        <%= projectDetails.organization_name %>
+                    </a>
+                </li>
+            <% } else { %>
+                <li>No project details available.</li>
+            <% } %>
+        </ul>
+    </main>
+<%- include('partials/footer') %>
