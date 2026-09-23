@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+    <main>
+        <h1><%= title %></h1>
+
+        <% if (category) { %>
+            <h2><%= category.category_name %></h2>
+        <% } %>
+
+        <% if (!projects || projects.length === 0) { %>
+            <p>No service projects are available for this category.</p>
+        <% } else { %>
+            <ul>
+                <% projects.forEach(project => { %>
+                    <li>
+                        <a href="/project/<%= project.project_id %>">
+                            <strong><%= project.title %></strong>
+                        </a>
+                        <% if (project.location) { %>
+                            <span> - <%= project.location %></span>
+                        <% } %>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } %>
+    </main>
+<%- include('partials/footer') %>

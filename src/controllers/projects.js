@@ -22,8 +22,12 @@ const showProjectDetailsPage = async (req, res) => {
   const projectId = req.params.id;
   try {
     const projectDetails = await getProjectDetails(projectId);
+
+    // FETCH THE CATEGORIES HERE
+    const assignedCategories = await getCategoriesByServiceProjectId(projectId);
+
     const title = 'Project Details';
-    res.render('project', { title, projectDetails });
+    res.render('project', { title, projectDetails, assignedCategories });
   } catch (error) {
     console.error('Error loading project details:', error.message);
     res.status(500).send('Unable to load project details.');
@@ -31,4 +35,4 @@ const showProjectDetailsPage = async (req, res) => {
 }
 
 // Export any controller functions
-export { showProjectsPage, showProjectDetailsPage };
+export { showProjectsPage, showProjectDetailsPage};

@@ -3,13 +3,14 @@
         <h1><%= title %></h1>
         <h2>Categories of Service</h2>
         <ul>
-            <% if (categories && categories.length) { %>
-                <% categories.forEach(category => { %>
-                    <li><strong><%= category.category_name %></strong> (ID: <%= category.category_id %>)</li>
-                <% }); %>
-            <% } else { %>
-                <li>No categories available.</li>
-            <% } %>
+            <% categories.forEach(category => { %>
+                <li>
+                    <a href="/category/<%= category.category_id %>">
+                        <strong><%= category.category_name %></strong>
+                    </a>
+                    <span> - View Details</span>
+                </li>
+            <% }); %>
         </ul>
     </main>
 <%- include('partials/footer') %>

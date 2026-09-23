@@ -7,6 +7,7 @@ import {showProjectsPage} from './controllers/projects.js';
 import {showHomePage} from './controllers/index.js';
 import {testErrorPage} from './controllers/errors.js';
 import {showProjectDetailsPage} from './controllers/projects.js';
+import {showCategoryDetailsPage} from './controllers/categories.js';
 
 // Routes
 const router = express.Router();
@@ -22,6 +23,8 @@ router.get('/test-error', testErrorPage);
 router.get('/organization/:id', showOrganizationDetailsPage);
 // Route for project details page
 router.get('/project/:id', showProjectDetailsPage);
+// Route for category details page
+router.get('/category/:id', showCategoryDetailsPage);
 
 
 

@@ -11,4 +11,71 @@ const getAllCategories = async() => {
     return result.rows;
 }
 
-export {getAllCategories}  
+const assignCategoryToProject = async(categoryId, projectId) => {
+    const query = `
+        INSERT INTO project_categories (category_id, project_id)
+        VALUES ($1, $2);
+    `;
+
+    await db.query(query, [categoryId, projectId]);
+}
+
+
+const getCategoryById = async (category_id) => { 
+    try {
+        const query = `
+            SELECT *
+            FROM public.categories
+            WHERE category_id = $1;
+        `;
+
+        const result = await db.query(query, [category_id]);
+        return result.rows[0];
+    }
+    catch (error) {
+        console.error('Error fetching category by ID:', error);
+        throw error;
+    }
+};
+
+const getCategoriesForProject = async (project_id) => {
+    try {
+        const query = `
+            SELECT c.*
+            FROM public.categories c
+            JOIN public.project_categories pc ON c.category_id = pc.category_id
+            WHERE pc.project_id = $1;
+        `;
+        const result = await db.query(query, [project_id]);
+
+        return result.rows;
+    }
+    catch (error) {
+        console.error('Error fetching categories for project:', error);
+        throw error;
+    }
+};
+
+const getprojectsByCategory = async (category_id) => {
+    try {
+        const query = `
+            SELECT p.*
+            FROM public.service_projects p
+            JOIN public.project_categories pc ON p.project_id = pc.project_id
+            WHERE pc.category_id = $1;
+        `;
+
+        const result = await db.query(query, [category_id]);
+        return result.rows;        
+    }
+    catch (error) {
+        console.error('Error fetching categories for project:', error);
+        throw error;
+    }
+};
+
+export {getAllCategories, 
+        getCategoryById, 
+        getCategoriesForProject, 
+        getprojectsByCategory, 
+        assignCategoryToProject};  
