@@ -18,6 +18,18 @@ const assignCategoryToProject = async(categoryId, projectId) => {
     `;
 
     await db.query(query, [categoryId, projectId]);
+
+    try {
+        await db.query(query, [categoryId, projectId]);
+    } catch (error) {
+        // Code 23503 is the Postgres code for Foreign Key Violation
+        if (error.code === '23503') {
+            throw new Error(`Assignment failed: Project or Category does not exist.`);
+        }
+        
+        // Handle other DB errors (like connection issues or duplicate entries)
+        throw error; 
+    }
 }
 
 

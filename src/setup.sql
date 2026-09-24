@@ -91,3 +91,14 @@ INSERT INTO categories (category_name) VALUES
 ('Health'),
 ('Community Development'),
 ('Food Security');
+
+-- ========================================
+-- Insert sample data: project_categories
+-- ========================================
+
+INSERT INTO project_categories (project_id, category_id) VALUES
+(1, 1),  -- Park Cleanup -> Environment
+(2, 1),  -- Tree Planting -> Environment
+(3, 1),  -- River Scrub -> Environment
+(6, 5),  -- Food Sorting -> Food Security
+(7, 5);  -- Meal Delivery -> Food Security
