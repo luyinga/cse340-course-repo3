@@ -17,5 +17,20 @@
                 <li>No project details available.</li>
             <% } %>
         </ul>
+
+        <h2>Categories</h2>
+        <% if (assignedCategories && assignedCategories.length > 0) { %>
+            <ul>
+                <% assignedCategories.forEach(category => { %>
+                    <li>
+                        <a href="/category/<%= category.category_id %>">
+                            <%= category.category_name %>
+                        </a>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No categories assigned to this project.</p>
+        <% } %>
     </main>
 <%- include('partials/footer') %>

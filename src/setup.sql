@@ -100,5 +100,20 @@ INSERT INTO project_categories (project_id, category_id) VALUES
 (1, 1),  -- Park Cleanup -> Environment
 (2, 1),  -- Tree Planting -> Environment
 (3, 1),  -- River Scrub -> Environment
+(4, 1),  -- Trail Repair -> Environment
+(4, 4),  -- Trail Repair -> Community Development
+(5, 1),  -- Garden Prep -> Environment
+(5, 5),  -- Garden Prep -> Food Security
 (6, 5),  -- Food Sorting -> Food Security
-(7, 5);  -- Meal Delivery -> Food Security
+(7, 5),  -- Meal Delivery -> Food Security
+(8, 3),  -- Soup Kitchen -> Health
+(8, 5),  -- Soup Kitchen -> Food Security
+(9, 5),  -- Pantry Stocking -> Food Security
+(10, 5), -- Bread Run -> Food Security
+(11, 2), -- Coding Workshop -> Education
+(12, 2), -- Web Design 101 -> Education
+(13, 2), -- Cyber Security -> Education
+(13, 3), -- Cyber Security -> Health
+(14, 2), -- PC Repair -> Education
+(14, 4), -- PC Repair -> Community Development
+(15, 2); -- Hardware Demo -> Education
